@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio</title>
+</head>
+
+<style>
+.indented {
+    padding-left: 100pt;
+    padding-right: 100pt;
+}
+</style>
+
+<style>
+A {
+    text-decoration: none;
+}
+</style>
+
+<body bgcolor="#AD85FF" link="#000000" alink="#000000" vlink="#000000">
+<center><h1><font face="Century Gothic" size=+4>Portfolio</font></h1></center>
+<hr color="#7458AD">
+<font face="Century Gothic"><a href="Portfolio.html"><img src="back.jpg" height="41" width="72" alt="Back"></a></font>
+<center><h2><font face="Century Gothic" size=+3>2D Array</font></h2></center>
+<p class="indented"><font face="Century Gothic">
+  <b>Tutorial</b>
+  <br>
+  Sometimes, a standard array is not sufficient for storing certain data. In the case of storing information from a table or matrix consisting of rows and columns, a 2D array is ideal. 2D arrays are two-dimensional, meaning they store data in a grid-like fashion. In Java, a 2D array is literally an array of arrays. Therefore, a 2D array can still be considered a standard one-dimensional array in some ways.
+  <br>
+  <br>
+  Declaring a 2D array is almost the same as declaring a 1D array. The only difference is that when declaring a 2D array, there are two sets of square brackets instead of one. Initializing a 2D array is also a similar process. Just like for a 1D array, 2D arrays can be initialized using either the new keyword or an initializer list. When using the new keyword to initialize a 2D array, the data type is followed by two sets of square brackets instead, just like in declaring the array. Inside the first set of square brackets, we pass in the number of rows we want to have in our array and inside the second set of square brackets, we pass in the number of columns. The total number of elements in the 2D array would be the product of the number of rows and number of columns. As always, indexes for rows and columns begin at 0, so the indexes of the last row and last column will be one less than the integers in the square brackets in the array initializer.
+  <br>
+  <br>
+  When a 2D array is initialized using the new keyword, all of its elements are set to their default values. If we already know the contents of the 2D array at the time of initialization, we can use an initializer list. An important concept to understand is that Java is a row-major programming language, meaning it prioritizes and stores rows first before columns. Therefore, in an array of arrays, the inner array elements of the outer 2D array represent the rows of the 2D array and not the columns. With this in mind, initializing a 2D array with an initializer list very straightforward; it is the exact same process as for a 1D array. However, each comma-separated element enclosed in the initializer lists curly braces is not an individual element, rather its own brace-enclosed initializer list with its own comma-separated elements. As a reminder, each internal array element represents and stores one row of data in the 2D array. The array at index 0 of the initializer list is the first row of the 2D array, the array at index 1 of the initializer list is the second row of the 2D array, and so on. Just like for 1D arrays, Java automatically determines the size (number of rows and columns) of the 2D array based on the number of elements in the initializer list; the number of rows is the number of array elements and the number of columns is the number of individual elements in the arrays.
+  <br>
+  <br>
+  Accessing or modifying elements in a 2D array is the same as for a standard array, except that there are two sets of square brackets. The integer in the first set of square brackets specifies the row index of the element to be accessed while the integer in the second set of square brackets specifies the column index of the element to be accessed.
+  <br>
+  <br>
+  Traversing a 2D array is more complicated than traversing a standard array due to its two-dimensional data structure. Traversal of a 2D array can be done in two ways: row-major order or column-major order. Traversing in row-major order means that starting from the row at index 0, all the elements of each row are accessed before moving on to the next row. Column-major order traversal is opposite; starting from the column at index 0, all the elements of each column are accessed before moving on to the next column. The best way to traverse a 2D array is to implement a nested for-loop or nested enhanced for-loop structure. A nested loop structure is defined as having a loop inside of another external loop. Therefore, if both internal and external loops run a constant number of times, the total number of times a nested loop runs is equal to the number of times the external loop runs multiplied by the number of times the internal loop runs. It is important to note that nested enhanced for-loops cannot be used for column-major 2D array traversals.
+  <br>
+  <br>
+  The first step to establishing a 2D array traversal using a nested for-loop is to determine the order of traversal; row-major or column-major. The outer for-loop will iterate through whichever group is prioritized while the inner for-loop will iterate through the other group. For example, in a column-major traversal, the outer loop will run through the columns while the inner loop will run through the rows. The outer loop's counter is initialized to 0 and the condition is set so that the loop runs as long as the counter is less than the length of the 1D array element at index 0 of the 2D array (assuming that each row has the same number of columns), as the number of columns in a 2D array is equal to the number of individual elements in each internal array element. The inner loop's counter is initialized to 0 and the condition is set so that the loop runs as long as the counter is less than the length of the 2D array (recall that Java is a row-major programming language, meaning each array element in the array of arrays represents a row of the 2D array, therefore the number of elements in the 2D array is the number of rows). Both loop counters are set to increment by one after each run of their corresponding loops. The outer loop's counter variable would be used to specify the column index location of an element being accessed in the 2D array while the inner loop's counter would be used for row indexes. Since the row-traversal for-loop is inside the column-traversal for-loop, the elements of every single row in a column are accessed first before moving on to access the elements of the next column (i.e. before the column index is incremented by one).
+  <br>
+  <br>
+  Another way to traverse a 2D array is by using a nested enhanced for-loop. In a nested enhanced for-loop, the outer loop accesses every array element in the array of arrays and the inner loop accesses all the individual elements inside these accessed arrays. Since Java is a row-major programming language, the array elements accessed by the outer enhanced for-loop represent the rows of the 2D array; therefore, nested enhanced for-loops can only be used for row-major 2D array traversals. In the outer loop declaration, the loop variable should be declared as an array and not a singular data type as the elements that are being accessed by the enhanced for-loop in the 2D array are arrays, not single data types. In the inner loop declaration, the loop variable is declared as an individual data type because each individual element in the current row is now being accessed. Note that nested enhanced for-loop traversals cannot be used to modify elements of a 2D array due to the enhanced for-loop's copying mechanism and the lack of indexes; they can only be used to access elements.
+  <br>
+</font></p>
+<br>
+<p class="indented"><font face="Century Gothic">
+  <b>Example</b>
+  <br>
+  Below is an example of a class using a 2D array:
+</font></p>
+<pre><font face="Courier New"><b>
+                    import java.io.*;
+
+                    public class Countries2D
+                    {
+                      String[][] countries;
+                      BufferedReader input;
+
+                      public Countries2D()
+                      {
+                        countries = new String[5][10];
+
+                        try
+                        {
+                          input = new BufferedReader(new FileReader("Countries.txt"));
+
+                          for(int i = 0; i < 10; i++)
+                          {
+                            for(int x = 0; x < 5; x++)
+                            {
+                              countries[x][i] = input.readLine();
+                            }
+                          }
+                        }
+                        catch(IOException e)
+                        {
+                        }
+                      }
+
+                      // more methods not shown
+                    }
+</b></font></pre>
+<p class="indented"><font face="Century Gothic">
+  The Countries2D class has a 2D array of string objects named countries. Notice the two sets of square brackets after the data type in the declaration of the instance variable countries. We also see two sets of square brackets in the initialization of the 2D array using the new keyword in the class constructor. The integer 5 in the first set of square brackets tells Java that countries has 5 rows and the integer 10 in the second set of square brackets tells Java that countries has 10 columns, which totals to 50 individual elements in the 2D array.
+  <br>
+  <br>
+  Since the new keyword was used to initialize the 2D array instead of an initializer list, the values of all the string elements in countries are defaulted to null. To assign proper values to these elements, a nested for-loop is used after the initialization of the 2D array to access and modify every element in the array. Specifying the element we want to access is done with two sets of square brackets, each containing a loop counter representing an integer. Because rows are always specified first, we can infer that the integer variable x tracks the row index and the integer variable i tracks the column index. Since i is initialized and incremented in the outer for-loop, we can conclude that this nested for-loop traverses the 2D array countries in column-major order. The outer loop iterates ten times while the inner loop iterates five times, therefore the complete nested loop iterates fifty times (ten times five).
+  <br>
+  <br>
+  Although the Countries2D class uses a 2D array to store its data, parallel 1D arrays can be used as an alternative. However, this would require many more instance variables, whereas a single 2D array can store all the necessary information in one variable. This helps make the program more organized as it is easier to keep track of variables. In the class constructor, the array traversal is done using a nested for-loop instead of a nested enhanced for-loop because the elements in the 2D array are being modified/assigned values. The column-major order of the traversal is due to program-specific requirements; each column in countries stores information pertaining to one country.
+  <br>
+  <br>
+  For this assignment, the task was to convert 1D parallel arrays (multiple arrays whose elements correspond to each other's elements of the same index) to a single 2D array.
+  <br>
+  <br>
+  The original 1D parallel arrays were of many different data types, including String, int, and double. Since a 2D array is one variable, it can only have one data type. I decided to declare my array as type String because strings are the most flexible data type, especially considering that I am only using primitive data types; all primitive types can easily be converted to strings values. Converting 1D parallel arrays to a 2D array also meant that I needed to modify how the array data was being accessed in the class's methods, such as changing the original simple for-loop traversal structure in the class constructor to a nested for-loop. When I converted the data in the 1D parallel arrays to be stored in a 2D array, I stored it in a way such that each 1D parallel array essentially became a row in the 2D array. To accommodate for this change, whenever a specific 1D parallel array was accessed in the original class, I modified the statement to reference the new 2D array instead of the original parallel array and specify the row index of the original 1D array in the 2D array in an additional set of square brackets inserted between the variable reference and the original set of square brackets. The value in the original set of square brackets could be preserved because it represented the column index of the 2D array correctly after the conversion.
+  <br>
+  <br>
+  These element-access modifications are illustrated in the calculateBest method in the Countries2D class, which was not shown in the previous example:
+</font></p>
+<pre><font face="Courier New"><b>
+                    public String calculateBest()
+                    {
+                      double greatestHdi = 0.0;
+                      int greatestHdiColumn = -1;
+                      int greatestGdp = 0;
+                      int greatestGdpColumn = -1;
+                      int greatestGpc = 0;
+                      int greatestGpcColumn = -1;
+                      double greatestPwr = 0.0;
+                      int greatestPwrColumn = -1;
+                      int count;
+                      int greatestCount = 0;
+                      int greatestCountColumn = 0;
+                      String data = "\nRank\tName\t\tHDI\t\tGDP($million)\tGDP/Capita\tPWR";
+
+                      for(int i = 0; i < 10; i++)
+                      {
+                        if(Double.parseDouble(countries[1][i]) > greatestHdi)
+                        {
+                          greatestHdi = Double.parseDouble(countries[1][i]);
+                          greatestHdiColumn = i;
+                        }
+                      }
+
+                      for(int i = 0; i < 10; i++)
+                      {
+                        if(Integer.parseInt(countries[2][i]) > greatestGdp)
+                        {
+                          greatestGdp = Integer.parseInt(countries[2][i]);
+                          greatestGdpColumn = i;
+                        }
+                      }
+
+                      for(int i = 0; i < 10; i++)
+                      {
+                        if(Integer.parseInt(countries[3][i]) > greatestGpc)
+                        {
+                          greatestGpc = Integer.parseInt(countries[3][i]);
+                          greatestGpcColumn = i;
+                        }
+                      }
+
+                      for(int i = 0; i < 10; i++)
+                      {
+                        if(Double.parseDouble(countries[4][i]) > greatestPwr)
+                        {
+                          greatestPwr = Double.parseDouble(countries[4][i]);
+                          greatestPwrColumn = i;
+                        }
+                      }
+
+                      for(int i = 0; i < 10; i++)
+                      {
+                        count = 0;
+                        if(greatestHdiColumn == i)
+                        {
+                          count++;
+                        }
+                        if(greatestGdpColumn == i)
+                        {
+                          count++;
+                        }
+                        if(greatestGpcColumn == i)
+                        {
+                          count++;
+                        }
+                        if(greatestPwrColumn == i)
+                        {
+                          count++;
+                        }
+                        if(count > greatestCount)
+                        {
+                          greatestCount = count;
+                          greatestCountColumn = i;
+                        }
+                      }
+
+                      data += "\n1\t" + countries[0][greatestCountColumn]+ "\t\t" + countries[1][greatestCountColumn] + "\t\t$" + countries[2][greatestCountColumn];
+                      if(Integer.parseInt(countries[3][greatestCountColumn]) < 999999)
+                      {
+                        data += "\t\t$" + countries[3][greatestCountColumn];
+                      }
+                      else
+                      {
+                        data += "\t$" + countries[3][greatestCountColumn];
+                      }
+                      data += "\t\t" + countries[4][greatestCountColumn];
+
+                      return data;
+                    }
+</b></font></pre>
+<p class="indented"><font face="Century Gothic">
+  Below is the original calculateBest method using 1D parallel arrays (the array instance variables are declared and initialized outside of this method):
+</font></p>
+<pre><font face="Courier New"><b>
+                    public String calculateBest()
+                    {
+                      double greatestHdi = 0.0;
+                      int greatestHdiIndex = -1;
+                      int greatestGdp = 0;
+                      int greatestGdpIndex = -1;
+                      int greatestGpc = 0;
+                      int greatestGpcIndex = -1;
+                      double greatestPwr = 0.0;
+                      int greatestPwrIndex = -1;
+                      int count;
+                      int greatestCount = 0;
+                      int greatestCountIndex = 0;
+                      String data = "\nRank\tName\t\tHDI\t\tGDP($million)\tGDP/Capita\tPWR";
+
+                      for(int i = 0; i < countries.length; i++)
+                      {
+                        if(hdi[i] > greatestHdi)
+                        {
+                          greatestHdi = hdi[i];
+                          greatestHdiIndex = i;
+                        }
+                      }
+
+                      for(int i = 0; i < countries.length; i++)
+                      {
+                        if(gdp[i] > greatestGdp)
+                        {
+                          greatestGdp = gdp[i];
+                          greatestGdpIndex = i;
+                        }
+                      }
+
+                      for(int i = 0; i < countries.length; i++)
+                      {
+                        if(gdpPerCapita[i] > greatestGpc)
+                        {
+                          greatestGpc = gdpPerCapita[i];
+                          greatestGpcIndex = i;
+                        }
+                      }
+
+                      for(int i = 0; i < countries.length; i++)
+                      {
+                        if(pwr[i] > greatestPwr)
+                        {
+                          greatestPwr = pwr[i];
+                          greatestPwrIndex = i;
+                        }
+                      }
+
+                      for(int i = 0; i < countries.length; i++)
+                      {
+                        count = 0;
+                        if(greatestHdiIndex == i)
+                        {
+                          count++;
+                        }
+                        if(greatestGdpIndex == i)
+                        {
+                          count++;
+                        }
+                        if(greatestGpcIndex == i)
+                        {
+                          count++;
+                        }
+                        if(greatestPwrIndex == i)
+                        {
+                          count++;
+                        }
+                        if(count > greatestCount)
+                        {
+                          greatestCount = count;
+                          greatestCountIndex = i;
+                        }
+                      }
+
+                      data += "\n1\t" + countries[greatestCountIndex]+ "\t\t" + hdi[greatestCountIndex] + "\t\t$" + gdp[greatestCountIndex];
+                      if(gdp[greatestCountIndex] < 999999)
+                      {
+                        data += "\t\t$" + gdpPerCapita[greatestCountIndex];
+                      }
+                      else
+                      {
+                        data += "\t$" + gdpPerCapita[greatestCountIndex];
+                      }
+                      data += "\t\t" + pwr[greatestCountIndex];
+
+                      return data;
+                    }
+</b></font></pre>
+<p class="indented"><font face="Century Gothic">
+  When specifying an element in a 2D array, a common mistake is forgetting which set of square brackets represents what. Always remember that the value in the first set of square brackets represents the row index and the value in the second set of square brackets represents the column index. Mixing up whether the row or column index comes first can lead to an ArrayIndexOutOfBoundsException (if the number of rows is different from the number of columns) or program-specific logic errors. Attempting to traverse a 2D array in column-major order using a nested enhanced for-loop will also cause similar errors. Generally, mistakes that arise from using 2D arrays are caused by mixing up rows and columns, whether it be syntactically or logically.
+</font></p>
+</body>
+</html>

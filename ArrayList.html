@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+</head>
+
+<style>
+.indented {
+    padding-left: 100pt;
+    padding-right: 100pt;
+}
+</style>
+
+<style>
+A {
+    text-decoration: none;
+}
+</style>
+
+<body bgcolor="#AD85FF" link="#000000" alink="#000000" vlink="#000000">
+    <center><h1><font face="Century Gothic" size=+4>Portfolio</font></h1></center>
+    <hr color="#7458AD">
+    <font face="Century Gothic"><a href="Portfolio.html"><img src="back.jpg" height="41" width="72" alt="Back"></a></font>
+    <center><h2><font face="Century Gothic" size=+3>ArrayList</font></h2></center>
+    <p class="indented"><font face="Century Gothic">
+        <b>Tutorial</b>
+        <br>
+        An ArrayList in Java is an object that is very similar to a standard array, but with one key difference: ArrayLists are mutable in size. This makes them much more flexible and easier to manipulate than arrays. In order to use ArrayLists, we must first import java.util.ArrayList or java.util.List as the ArrayList class is not included in Java's default library.
+        <br>
+        <br>
+        Declaring an ArrayList is different from declaring a standard array. To create an ArrayList, we first declare a variable of type ArrayList. After the ArrayList data type, we declare the type of data to be stored in the ArrayList in angle brackets (<>). For example, an ArrayList for storing string objects would be declared as ArrayList&lt;String&gt;. Fi0nally, we declare the name of the ArrayList variable after the datatype declarations. One important thing to note is that ArrayLists can only store objects, not primitive types. In order to store primitive data in an ArrayList, we use the corresponding class instead. For example, an ArrayList for storing integer values would be declared as ArrayList&lt;Integer&gt; and not ArrayList&lt;int&gt; and would store Integer objects instead of primitive int values.
+        <br>
+        <br>
+        Unlike standard arrays, ArrayLists cannot be initialized using an initializer list. The only way to initialize an ArrayList is by using the new keyword. Initializing an ArrayList is done by stating the new keyword followed by the ArrayList data type, the type of data to be stored in the ArrayList enclosed in angle brackets, and parentheses. This calls the constructor of the ArrayList class to instantiate the ArrayList variable. Inside the parentheses, we can pass in an integer size that we want our ArrayList to be. If we leave the parentheses blank, the ArrayList will default to a size of 10. Although declaring and initializing ArrayLists can be syntactically done in many ways (e.g. we can omit the data type enclosed in angle brackets in the initialization, or we can even decide to not declare any specific data type to be stored at all), the way described above is best practice.
+        <br>
+        <br>
+        ArrayLists have unique class methods that allow us to retrieve, modify, add, and remove elements, as well as to return the size of the ArrayList. In ArrayLists, the size method is used to return the size/length of the list; it is equivalent to the length variable in a standard array. Accessing elements in ArrayLists is also different from standard arrays. Instead of using square brackets with indexes inside them, we use the ArrayList class's get and set methods. The get method is used if we want to simply access an element. We pass in the index of the element we want and the method will return that object. To modify the value of an element, we use the set method. The set method takes in two parameters: an integer for the index we want to modify and an object of the ArrayList's datatype to set the accessed element's value to. The set method also returns the object previously stored in the index position prior to the modification.
+        <br>
+        <br>
+        Since ArrayLists are mutable in size, we can use the add and remove methods to directly add and remove elements from the list, both of which cause its size to change. The add method has two overloaded versions. The one-parameter add method takes in an object of the ArrayList's data type to append to the end of the list and returns a boolean value of true. The two-parameter add method takes in an integer of the index position in the list to add to as well as the object to be added to that position. When this overloaded version of the add method is called, all the elements in the ArrayList from the specified index in the parameter to the last element in the list, inclusive, will be shifted right one index in order to make room for the newly-added element in the specified position.
+        <br>
+        <br>
+        The remove method is simply a method that removes an element from the ArrayList. This method also has two overloaded versions: it can take in either an integer or an object. The remove method with an integer parameter will remove the element in the ArrayList at the index of that integer and shift all the elements after it down one index. The remove method with an object parameter will remove the first occurrence of the specified object in the ArrayList and also shift all the elements after it down one index. Both versions of the remove method will return the removed object.
+        <br>
+        <br>
+        Traversing an ArrayList is mostly the same as traversing a standard array. However, it is important to remember that we must use the get and set methods instead of square brackets to access elements in an ArrayList. Another important factor to consider is the fact that changing the size of an ArrayList during a traversal can result in certain elements being skipped or access twice by the loop as shifting elements causes index positions to change. For example, if the fifth element in an ArrayList is removed during a traversal, the sixth element will become the new fifth element. However, since the loop has already accessed the fifth element, it will now go on to access the sixth element, which was originally the seventh element. As a result, the sixth element in the original ArrayList is skipped. Issues with elements being skipped due to the remove method or accessed twice due to the add method in ArrayList traversals can be fixed by decrementing or incrementing the loop counter by one after a call to the remove or add method, respectively.
+        <br>
+        <br>
+        When traversing an ArrayList using an enhanced for-loop, we cannot add or remove elements from the ArrayList. Doing so will result in a ConcurrentModificationException because changing the ArrayList's size in the middle of an enhanced for-loop run will disrupt the traversal.
+    </font></p>
+    <br>
+    <p class="indented"><font face="Century Gothic">
+        <b>Example</b>
+        <br>
+        Below is an example of a class using ArrayLists:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    import java.util.ArrayList;
+                    import java.util.Collections;
+
+                    public class Bridge {
+                        private ArrayList&lt;String&gt; deck;
+                        private ArrayList&lt;Player&gt; players;
+
+                        public Bridge() {
+                            deck = new ArrayList<>(52);
+                            String suit = null;
+                            String denomination = null;
+                            players = new ArrayList<>(4);
+
+                            for (int i = 0; i < 4; i++)
+                                players.add(new Player("Player " + (i + 1)));
+
+                            for (int s = 0; s < 4; s++) {
+                                switch (s) {
+                                case 0:
+                                    suit = "S";
+                                    break;
+                                case 1:
+                                    suit = "H";
+                                    break;
+                                case 2:
+                                    suit = "D";
+                                    break;
+                                case 3:
+                                    suit = "C";
+                                    break;
+                                }
+                                for (int d = 0; d < 13; d++) {
+
+                                    switch (d) {
+                                    case 0:
+                                        denomination = "2";
+                                        break;
+                                    case 1:
+                                        denomination = "3";
+                                        break;
+                                    case 2:
+                                        denomination = "4";
+                                        break;
+                                    case 3:
+                                        denomination = "5";
+                                        break;
+                                    case 4:
+                                        denomination = "6";
+                                        break;
+                                    case 5:
+                                        denomination = "7";
+                                        break;
+                                    case 6:
+                                        denomination = "8";
+                                        break;
+                                    case 7:
+                                        denomination = "9";
+                                        break;
+                                    case 8:
+                                        denomination = "T";
+                                        break;
+                                    case 9:
+                                        denomination = "J";
+                                        break;
+                                    case 10:
+                                        denomination = "Q";
+                                        break;
+                                    case 11:
+                                        denomination = "K";
+                                        break;
+                                    case 12:
+                                        denomination = "A";
+                                        break;
+                                    }
+                                    deck.add(denomination + suit);
+                                }
+                            }
+                        }
+
+                        public void deal() {
+                            String temp;
+
+                            for (int i = 1; i < 14; i++) {
+                                temp = deck.get(0);
+                                deck.remove(0);
+                                players.get(0).getHand().add(temp);
+
+                                temp = deck.get(0);
+                                deck.remove(0);
+                                players.get(1).getHand().add(temp);
+
+                                temp = deck.get(0);
+                                deck.remove(0);
+                                players.get(2).getHand().add(temp);
+
+                                temp = deck.get(0);
+                                deck.remove(0);
+                                players.get(3).getHand().add(temp);
+                            }
+                        }
+
+                        // more methods not shown
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        In the example above, we see that the Bridge class has two private ArrayList variables. We also notice that java.util.ArrayList has been imported, allowing us to use the ArrayList class. ArrayList deck stores string objects while ArrayList players stores player objects, as shown in the angle brackets after the ArrayList declaration. In the Bridge class constructor, deck is initialized using the new keyword to a size of 52 while players is initialized to a size of 4. In the for-loop after the variable initializations, we see the ArrayList class's add method in action as the loop adds player objects to players. In the deal method below the constructor, the get and remove methods are used to get card values from the deck to add to the players' hands and remove them from the deck as the cards are dealt, respectively.
+        <br>
+        <br>
+        The structure of the program is efficient but could be improved. In the for-loop inside the deal method, the local string variable temp is assigned the value of the first card in the deck ArrayList before it is removed using the remove method. However, since the remove method returns the removed object, I could have simply assigned the call to the remove method directly to temp instead of writing an additional unnecessary call to the get method. Although this code refactoring does not affect the end result of the program, it could save a little bit of time as the compiler would have fewer lines to read. Additionally, in the class constructor, the angle brackets are left blank in the initialization of the class ArrayList variables. It would be better practice to restate the type of data stored in the ArrayLists in the angle brackets instead of leaving them blank, though doing so would not have any real effect on the program.
+        <br>
+        <br>
+        In this assignment, the goal was to create a program that would simulate a simple game of bridge. The program would initialize a full deck of poker cards and deal them to four different players. Then each player's hand would be calculated for points based on a specific point system. After calculating all four hands, the player with the most points is the winner. In completing this assignment, we were required to use ArrayLists and ArrayList methods to manipulate the ArrayLists into creating a fully functional program.
+        <br>
+        <br>
+        A complete version of the Bridge class is shown below:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    import java.util.ArrayList;
+                    import java.util.Collections;
+
+                    public class Bridge {
+                        private ArrayList&lt;String&gt; deck;
+                        private ArrayList&lt;Player&gt; players;
+
+                        public Bridge() {
+                            deck = new ArrayList<>(52);
+                            String suit = null;
+                            String denomination = null;
+                            players = new ArrayList<>(4);
+
+                            for (int i = 0; i < 4; i++)
+                                players.add(new Player("Player " + (i + 1)));
+
+                            for (int s = 0; s < 4; s++) {
+                                switch (s) {
+                                case 0:
+                                    suit = "S";
+                                    break;
+                                case 1:
+                                    suit = "H";
+                                    break;
+                                case 2:
+                                    suit = "D";
+                                    break;
+                                case 3:
+                                    suit = "C";
+                                    break;
+                                }
+                                for (int d = 0; d < 13; d++) {
+
+                                    switch (d) {
+                                    case 0:
+                                        denomination = "2";
+                                        break;
+                                    case 1:
+                                        denomination = "3";
+                                        break;
+                                    case 2:
+                                        denomination = "4";
+                                        break;
+                                    case 3:
+                                        denomination = "5";
+                                        break;
+                                    case 4:
+                                        denomination = "6";
+                                        break;
+                                    case 5:
+                                        denomination = "7";
+                                        break;
+                                    case 6:
+                                        denomination = "8";
+                                        break;
+                                    case 7:
+                                        denomination = "9";
+                                        break;
+                                    case 8:
+                                        denomination = "T";
+                                        break;
+                                    case 9:
+                                        denomination = "J";
+                                        break;
+                                    case 10:
+                                        denomination = "Q";
+                                        break;
+                                    case 11:
+                                        denomination = "K";
+                                        break;
+                                    case 12:
+                                        denomination = "A";
+                                        break;
+                                    }
+                                    deck.add(denomination + suit);
+                                }
+                            }
+                        }
+
+                        public void shuffleDeck() {
+                            Collections.shuffle(deck);
+                        }
+
+                        public void deal() {
+                            String temp;
+
+                            for (int i = 1; i < 14; i++) {
+                                temp = deck.get(0);
+                                deck.remove(0);
+                                players.get(0).getHand().add(temp);
+
+                                temp = deck.get(0);
+                                deck.remove(0);
+                                players.get(1).getHand().add(temp);
+
+                                temp = deck.get(0);
+                                deck.remove(0);
+                                players.get(2).getHand().add(temp);
+
+                                temp = deck.get(0);
+                                deck.remove(0);
+                                players.get(3).getHand().add(temp);
+                            }
+                        }
+
+                         public void calcPoints()
+                         {
+                             for (Player player : players) {
+                                 player.calcPoints();
+                             }
+                         }
+
+                        public void displayInfo() {
+                            System.out.println(this);
+                        }
+
+                        public String toString() {
+                            String data = "Bridge";
+                            int biggestNum = 0;
+                            String winner = "";
+
+                            for (int a = 0; a < players.size(); a++) {
+                                data += "\n\nPlayer " + (a + 1) + " Hand\nSpades: ";
+
+                                for (int i = 0; i < 13; i++) {
+                                    if (players.get(a).getHand().get(i).charAt(1) == 'S') {
+                                        data += players.get(a).getHand().get(i).charAt(0);
+                                    }
+                                }
+
+                                data += "\nHearts: ";
+
+                                for (int i = 0; i < 13; i++) {
+                                    if (players.get(a).getHand().get(i).charAt(1) == 'H') {
+                                        data += players.get(a).getHand().get(i).charAt(0);
+                                    }
+                                }
+
+                                data += "\nDiamonds: ";
+
+                                for (int i = 0; i < 13; i++) {
+                                    if (players.get(a).getHand().get(i).charAt(1) == 'D') {
+                                        data += players.get(a).getHand().get(i).charAt(0);
+                                    }
+                                }
+
+                                data += "\nClubs: ";
+
+                                for (int i = 0; i < 13; i++) {
+                                    if (players.get(a).getHand().get(i).charAt(1) == 'C') {
+                                        data += players.get(a).getHand().get(i).charAt(0);
+                                    }
+                                }
+
+                                data += "\nPlayer " + (a + 1) + " Points: " + players.get(a).getPoints();
+                            }
+
+                            for (Player p : players){
+                                if (p.getPoints() > biggestNum)
+                                {
+                                    biggestNum = p.getPoints();
+                                    winner = p.getName();
+                                }
+                            }
+
+                            data += "\n\nWinner: " + winner;
+
+                            return data;
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        In solving this problem, I first created two ArrayLists; one to store the deck of cards and the other to store the players, remembering as well to import java.util.ArrayList. In the constructor, I initialized the ArrayLists and assigned proper values to them using for-loops and the add method. The shuffleDeck method shuffles the deck by calling the shuffle method in the Collections class, which was imported along with the ArrayList class. Next, I created the deal method to deal out the cards in the deck to the players' hands using the get, add, and remove methods. At the end of the method, all the cards in the deck have been emptied into the player's hands.
+        <br>
+        <br>
+        Finally, the calcPoints method calculates each individual player's points by calling the calcPoints method of each Player object using an enhanced for-loop. The displayInfo method then prints each player's hand into the console, along with the winner of the round.
+        <br>
+        <br>
+        The Player class is shown below for reference:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    import java.util.ArrayList;
+
+                    public class Player {
+                        private ArrayList&lt;String&gt; hand = new ArrayList<>();
+                        private String name;
+                        private int points;
+
+                        public Player() {
+                            name = "";
+                            points = 0;
+                        }
+
+                        public Player(String n) {
+                            name = n;
+                            points = 0;
+                        }
+
+                        public ArrayList&lt;String&gt; getHand() {
+                            return hand;
+                        }
+
+                        public void setHand(ArrayList&lt;String&gt; hand) {
+                            this.hand = hand;
+                        }
+
+                        public String getName() {
+                            return name;
+                        }
+
+                        public void setName(String name) {
+                            this.name = name;
+                        }
+
+                        public int getPoints() {
+                            return points;
+                        }
+
+                        public void setPoints(int points) {
+                            this.points = points;
+                        }
+
+                        public void calcPoints() {
+                           int countS = 0;
+                           int countH = 0;
+                           int countD = 0;
+                           int countC = 0;
+                           boolean hasSingleton = false;
+                           boolean hasDoubleton = false;
+
+                           for (String c : hand) {
+                               if (c.charAt(0) == 'A') {
+                                   points += 4;
+                               } else if (c.charAt(0) == 'K') {
+                                   points += 3;
+                               } else if (c.charAt(0) == 'Q') {
+                                   points += 2;
+                               } else if (c.charAt(0) == 'J') {
+                                   points += 1;
+                               }
+
+                               if (c.charAt(1) == 'S') {
+                                   countS++;
+                               } else if (c.charAt(1) == 'H') {
+                                   countH++;
+                               } else if (c.charAt(1) == 'D') {
+                                   countD++;
+                               } else if (c.charAt(1) == 'C') {
+                                   countC++;
+                               }
+                           }
+
+                           switch (countS) {
+                               case 0:
+                                   points += 3;
+                                   break;
+                               case 1:
+                                   points += 2;
+                                   hasSingleton = true;
+                                   break;
+                               case 2:
+                                   points++;
+                                   hasDoubleton = true;
+                           }
+
+                           switch (countH) {
+                               case 0:
+                                   points += 3;
+                                   break;
+                               case 1:
+                                   if (!hasSingleton) {
+                                       points += 2;
+                                       hasSingleton = true;
+                                       break;
+                                   }
+                               case 2:
+                                   if (!hasDoubleton) {
+                                       points++;
+                                       hasDoubleton = true;
+                                   }
+                           }
+
+                           switch (countD) {
+                               case 0:
+                                   points += 3;
+                                   break;
+                               case 1:
+                                   if (!hasSingleton) {
+                                       points += 2;
+                                       hasSingleton = true;
+                                       break;
+                                   }
+                               case 2:
+                                   if (!hasDoubleton) {
+                                       points++;
+                                       hasDoubleton = true;
+                                   }
+                           }
+
+                           switch (countC) {
+                               case 0:
+                                   points += 3;
+                                   break;
+                               case 1:
+                                   if (!hasSingleton) {
+                                       points += 2;
+                                       hasSingleton = true;
+                                       break;
+                                   }
+                               case 2:
+                                   if (!hasDoubleton) {
+                                       points++;
+                                       hasDoubleton = true;
+                                   }
+                           }
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        The Player class features a String ArrayList called hand which stores the player's cards. The calcPoints method in the Player class calculates the player's points based on the specified point system given in the assignment instructions.
+        <br>
+        <br>
+        Being different yet similar to standard arrays at the same time, ArrayLists can cause many common mistakes when users forget to differentiate them from arrays. The most common error is using square brackets to access and modify elements in an ArrayList instead of the get and set methods. When traversing ArrayLists, it is very easy to accidentally skip over an element or access an element twice if the size of the array is modified during the traversal. As stated above, the solution to this problem is to either decrement or increment the loop counter by one after a call to the remove or add method, respectively. Other common mistakes include forgetting to import the ArrayList class and attempting to modify the size of an ArrayList during an enhanced for-loop traversal, which will result in a ConcurrentModificationException being thrown.
+    </font></p>
+</body>
+</html>

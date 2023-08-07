@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio</title>
+</head>
+
+<style>
+.indented {
+    padding-left: 100pt;
+    padding-right: 100pt;
+}
+</style>
+
+<style>
+A {
+    text-decoration: none;
+}
+</style>
+
+<style type="text/css">
+table {
+margin-left: 135px
+}
+</style>
+
+<body bgcolor="#AD85FF" link="#000000" alink="#000000" vlink="#000000">
+<center><h1><font face="Century Gothic" size=+4>Portfolio</font></h1></center>
+<hr color="#7458AD">
+<font face="Century Gothic"><a href="Portfolio.html"><img src="back.jpg" height="41" width="72" alt="Back"></a></font>
+<center><h2><font face="Century Gothic" size=+3>Searching and Sorting</font></h2></center>
+<p class="indented"><font face="Century Gothic">
+  <b>Tutorial</b>
+  <br>
+  The need to search and sort collections of data is very common in Java programs involving arrays, ArrayLists, 2D arrays, etc. Searching is the process of attempting to locate a certain element inside a collection of data and is done by implementing selective iteration (a loop structure with a conditional statement in its body). Sorting is the process of rearranging the elements in a collection of data in a certain order (ascending order, descending order, etc.). A sorting algorithm is more complex than a searching algorithm but is composed of similar iteration and selection concepts.
+  <br>
+  <br>
+  There are two main ways to search through a collection of data: sequential search and binary search. Sequential search is very easy to implement; it is simply a traversal loop containing a conditional statement to verify if the element that is currently accessed is equal to the target value (the element being searched for). During a sequential search, the program goes through every single element in a collection of data one by one, comparing each element to the assigned search target. If an element is equal to the assigned target, the target has been found in the collection of data and the search is complete.
+  <br>
+  <br>
+  Binary search is a faster, more efficient searching method than sequential search. However, it has one main drawback: the elements in the data collection must already be sorted in either ascending or descending order in order for this method of searching to work. It is also more complicated to code than a simple sequential search. During a binary search, the program compares the element at the middle index of the collection of data to the target. If the target is greater than the element at the middle index, the program will shrink the range of search to the right half of the data collection (assuming the list is sorted in ascending order), and vice versa. The program will then compare the element at the middle index of the new reduced range to the target and repeat the same process until the target element is found (or until the program realizes the target does not exist in the data collection).
+  <br>
+  <br>
+  Like searching, sorting can be done in many different ways. Some popular well-known methods of sorting include selection sort, insertion sort, merge sort, quicksort, bubble sort, and Timsort. Note that although searching can be done using access-only enhanced for-loops, enhanced for-loops cannot be used for implementing a sorting algorithm as the process of sorting requires the ability to modify the data collection.
+</font></p>
+<br>
+<p class="indented"><font face="Century Gothic">
+  <b>Example</b>
+  <br>
+  Below is a video presentation on Timsort, a popular and fast sorting algorithm used in Python's default sort method, by me and my partner Gene Song:
+  <br>
+  <br>
+  <iframe width="560" height="315" src="timsort.mp4" frameborder="0" allowfullscreen></iframe>
+  <br>
+  <br>
+  <b>Time Complexity:</b> the amount of time an algorithm takes to run (measured in big O notation).
+  <br>
+  Below are the time complexities of common searching and sorting algorithms:
+  </font></p>
+  <font face="Century Gothic"><table border="2">
+    <tr>
+      <td><b>Algorithm</b></td>
+      <td><b>Time Complexity</b></td>
+    </tr>
+    <tr>
+      <td>Sequential Search</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>Binary Search</td>
+      <td>O(log n)</td>
+    </tr>
+    <tr>
+      <td>Selection Sort</td>
+      <td>O(n<sup>2</sup>)</td>
+    </tr>
+    <tr>
+      <td>Insertion Sort</td>
+      <td>O(n<sup>2</sup>)</td>
+    </tr>
+    <tr>
+      <td>Merge Sort</td>
+      <td>O(n log n)</td>
+    </tr>
+    <tr>
+      <td>QuickSort</td>
+      <td>O(n log n)</td>
+    </tr>
+    <tr>
+      <td>Bubble Sort</td>
+      <td>O(n<sup>2</sup>)</td>
+    </tr>
+    <tr>
+      <td>Timsort</td>
+      <td>O(n log n)</td>
+    </tr>
+  </table></font>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+</head>
+
+<style>
+.indented {
+    padding-left: 100pt;
+    padding-right: 100pt;
+}
+</style>
+
+<style>
+A {
+    text-decoration: none;
+}
+</style>
+
+<body bgcolor="#AD85FF" link="#000000" alink="#000000" vlink="#000000">
+    <center><h1><font face="Century Gothic" size=+4>Portfolio</font></h1></center>
+    <hr color="#7458AD">
+    <font face="Century Gothic"><a href="Portfolio.html"><img src="back.jpg" height="41" width="72" alt="Back"></a></font>
+    <center><h2><font face="Century Gothic" size=+3>Inheritance</font></h2></center>
+    <p class="indented"><font face="Century Gothic">
+        <b>Tutorial</b>
+        <br>
+        In Java, classes can extend other classes and inherit their attributes and methods. This concept is known as inheritance. The inheriting class is called a subclass and the class that is being inherited from is called a superclass. Inheritance leads to the derivation of class hierarchy, in which subclasses can trace their roots to superclasses, which can also be subclasses of even higher superclasses. All classes are subclasses of the Object class in Java, meaning all classes are Objects and inherit the methods and attributes of the Object class. For example, the Object class has a boolean method equals and a String method toString. If we created a Car class, the Car class would inherit the equals and toString methods. The relationship between a subclass and a superclass is often described as an "is-a" relationship; a Car is an Object based on the Java class hierarchy.
+        <br>
+        <br>
+        To inherit from a superclass, we use the keyword extends after the class declaration, followed by the name of the superclass. Doing so would give the extending subclass all the methods and attributes of the superclass; they can be called and accessed by the subclass even if they are not actually written in the subclass body. However, private methods and variables in the superclass are still restricted to the superclass and cannot be directly accessed by the subclass. It is also important to note that a class can only extend one superclass but a superclass can have multiple subclasses.
+        <br>
+        <br>
+        Although methods and variables are inherited by a subclass from a superclass, constructors are not inherited and must be manually written in the subclass. When writing the body of a subclass constructor, we can use the super keyword to call a constructor of the superclass. If the superclass has multiple overloaded constructors, we specify the constructor we want based on the parameters of the super constructor call (just like for any other method). If no call to super is made in a subclass constructor, the no-argument constructor of the superclass is called by default. This is one of the reasons why it is important to write a no-argument constructor in a class.
+        <br>
+        <br>
+        Another feature of inheritance is overriding methods. A subclass can rewrite a method that it inherited from its superclass and essentially replace the original superclass method with the new overridden method. To override a method in the subclass, we simply write the method in the subclass body with the same name as the superclass method we want to override.
+        <br>
+        <br>
+        The super keyword can also be used to call specific methods of the superclass. For example, imagine a superclass has a no-argument method run and the run method is overridden in a subclass of that superclass. Calling the run method from the subclass will result in the overridden method being called. But what if we want to call the original run method in the superclass instead? We would use the super keyword followed by a period in front of the method call to specify the class we are calling to, just like we would specify a class before a call to a method outside of the calling class. In this case, the call to the run method would be super.run().
+        <br>
+        <br>
+        Since a subclass is its superclass, we can declare a superclass variable and initialize it using a subclass constructor. Note that it does not work the other way around because a superclass is not its subclass. Initializing a superclass to one of its subclasses triggers a Java concept known as polymorphism. Polymorphism helps Java determine the correct method to execute among overridden versions of the same method based on the data type an object has been declared or cast as, no matter what the object is actually an instance of. When a subclass is referenced as its superclass, the compiler treats it as an instance of the superclass (it does not know that the subclass is in fact a subclass of the superclass). This means that, although the object is an instance of the subclass, it can only access methods and variables in the superclass, as that is the data type the subclass has been declared as. It is important to remember that all classes can access methods and variables in classes hierarchically above them (as long as they are not private) but classes cannot access methods or variables from classes hierarchically below.
+    </font></p>
+    <br>
+    <p class="indented"><font face="Century Gothic">
+        <b>Example</b>
+        <br>
+        Below is an example of a class inheriting from a superclass:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    public class IndependentRecordLabel extends RecordLabel{
+                        private String genre;
+                        private String financialStatus;
+                        private int numConnections;
+                        private int numCollabAlbums;
+
+                        public IndependentRecordLabel()
+                        {
+                            genre = "";
+                            financialStatus = "breaking even";
+                            numConnections = 0;
+                            numCollabAlbums = 0;
+                        }
+
+                        public IndependentRecordLabel(String n, String ceo, String hq, int plat, double r, double c, int alb, int art,
+                        String g, String fs, int nc, int nca) {
+                            super(n, ceo, hq, plat, r, c, alb, art);
+                            genre = g;
+                            financialStatus = fs;
+                            numConnections = nc;
+                            numCollabAlbums = nca;
+                        }
+
+                        public void newConnection()
+                        {
+                            numConnections++;
+                        }
+
+                        public void breakConnection()
+                        {
+                            numConnections--;
+                        }
+
+                        public void artistControversy(int numCon) {
+                            numConnections -= numCon;
+                        }
+
+                        public void releaseCollabAlbum()
+                        {
+                            numCollabAlbums++;
+                        }
+
+                        public String getGenre() {
+                            return genre;
+                        }
+
+                        public void setGenre(String genre) {
+                            this.genre = genre;
+                        }
+
+                        public String getFinancialStatus() {
+                            return financialStatus;
+                        }
+
+                        public void setFinancialStatus(String financialStatus) {
+                            this.financialStatus = financialStatus;
+                        }
+
+                        public int getNumConnections() {
+                            return numConnections;
+                        }
+
+                        public void setNumConnections(int numConnections) {
+                            this.numConnections = numConnections;
+                        }
+
+                        public int getNumCollabAlbums() {
+                            return numCollabAlbums;
+                        }
+
+                        public void setNumCollabAlbums(int numCollabAlbums) {
+                            this.numCollabAlbums = numCollabAlbums;
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        Here is the RecordLabel superclass:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    public class RecordLabel {
+                        private String name;
+                        private String CEO;
+                        private String HQLocation;
+                        private int numPlatinums;
+                        private double revenue;
+                        private double cost;
+                        private double profit;
+                        private int numAlbums;
+                        private int numArtists;
+
+                        public RecordLabel()
+                        {
+                            name = "";
+                            CEO = "";
+                            HQLocation = "";
+                            numPlatinums = 0;
+                            revenue = 0.0;
+                            cost = 0.0;
+                            profit = 0.0;
+                            numAlbums = 0;
+                            numArtists = 0;
+                        }
+
+                        public RecordLabel(String n, String ceo, String hq, int plat, double r, double c, int alb, int art) {
+                            name = n;
+                            CEO = ceo;
+                            HQLocation = hq;
+                            numPlatinums = plat;
+                            revenue = r;
+                            cost = c;
+                            numAlbums = alb;
+                            numArtists = art;
+                            profit = 0.0;
+                        }
+
+                        public void releaseAlbum(double sales) {
+                            numAlbums++;
+                            revenue += sales;
+                        }
+
+                        public void releaseSingle(double sales) {
+                            revenue += sales;
+                            if (sales >= 1000000) {
+                                numPlatinums++;
+                            }
+                        }
+
+                        public void tour(double sales, double expenses) {
+                            revenue += sales;
+                            cost += expenses;
+                        }
+
+                        public void calcProfit() {
+                            profit = revenue - cost;
+                        }
+
+                        public void signArtist() {
+                            numArtists++;
+                        }
+
+                        public String getName() {
+                            return name;
+                        }
+
+                        public void setName(String name) {
+                            this.name = name;
+                        }
+
+                        public String getCEO() {
+                            return CEO;
+                        }
+
+                        public void setCEO(String ceo) {
+                            CEO = ceo;
+                        }
+
+                        public String getHQLocation() {
+                            return HQLocation;
+                        }
+
+                        public void setHQLocation(String hQLocation) {
+                            HQLocation = hQLocation;
+                        }
+
+                        public int getNumPlatinums() {
+                            return numPlatinums;
+                        }
+
+                        public void setNumPlatinums(int numPlatinums) {
+                            this.numPlatinums = numPlatinums;
+                        }
+
+                        public double getRevenue() {
+                            return revenue;
+                        }
+
+                        public void setRevenue(double revenue) {
+                            this.revenue = revenue;
+                        }
+
+                        public double getCost() {
+                            return cost;
+                        }
+
+                        public void setCost(double cost) {
+                            this.cost = cost;
+                        }
+
+                        public double getProfit() {
+                            return profit;
+                        }
+
+                        public int getNumAlbums() {
+                            return numAlbums;
+                        }
+
+                        public void setNumAlbums(int numAlbums) {
+                            this.numAlbums = numAlbums;
+                        }
+
+                        public int getNumArtists() {
+                            return numArtists;
+                        }
+
+                        public void setNumArtists(int numArtists) {
+                            this.numArtists = numArtists;
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        Notice how the IndependentRecordLabel class extends the RecordLabel class in the class declaration. This tells Java that IndependentRecordLabel is a subclass of the RecordLable superclass. IndependentRecordLabel inherits all of the methods and variables from RecordLabel, such as the string variable name and void method releaseAlbum. Although IndependentRecordLabel has all of RecordLabel's variables, it cannot directly access them as they are declared private in the RecordLabel class. However, it can use the getter and setter methods it inherited from the RecordLabel superclass to access and modify these private variables.
+        <br>
+        <br>
+        The IndependentRecordLabel class has two constructors: a no-argument constructor and a twelve-argument constructor. In the no-argument constructor, there is no instance of the super keyword, so the RecordLabel superclass's no-argument constructor is called by default when this constructor is called. In the twelve-argument constructor, we can see that the eight-argument super constructor is called. This will pass the eight parameter values in the super call to the eight-argument constructor in the RecordLabel superclass when the twelve-argument IndependentRecordLabel constructor is called.
+        <br>
+        <br>
+        This program has a superclass-subclass structure; the IndependentRecordLabel class extends the RecordLabel class. This structure allows the IndependentRecordLabel class to inherit and be able to directly access all the (non-private) variables and methods in the RecordLabel superclass without actually having these variables and methods written in its class body. Having the program structured this way makes further programming easier and more efficient. For example, if I wanted to create another class with the same variables and methods as the RecordLabel class, I could simply extend RecordLabel in that class declaration as well. This saves a lot of time and effort because I do not have to recode all the variables and methods in the new subclass.
+        <br>
+        <br>
+        For this project, we were to work with partners to create our own unique (teacher-approved) objects using Java classes and subclasses and present our work to the class. Specific instructions included using getter and setter methods to indirectly manipulate privatized instance variables, creating a main method to demonstrate our classes and subclasses, implementing multiple overloaded constructors, and creating subclasses of the main superclass to inherit and add on to the original structure.
+        <br>
+        <br>
+        My partner for this assignment was Gene Song and our topic was record labels. Our first step was to create a RecordLabel class with the basic variables and methods that help define a record label object. As shown above, record labels have names, revenues, costs, headquarters locations, albums, artists, etc. Actions record labels can do include releasing new albums, releasing new singles, calculating profits, signing new artists, as well as getting and setting instance variables.
+        <br>
+        <br>
+        Next, we brainstormed specific types of record labels to create our RecordLabel subclasses. There are two main types of record labels: major record labels and independent record labels. For each of these specific record label types, we created a class that extends from the RecordLabel superclass and added new variables and methods pertaining specifically to that record label type. For example, the IndependentRecordLabel class features a string variable genre that stores the genre type of the independent record label. Major record labels on the other hand do not have this variable because they are often multi-genre due to their immense sizes. However, the MajorRecordLabel class has an int variable numCountries that stores the number of countries the major record label operates in, as well as accompanying methods to manipulate this private variable; independent record labels do not have this variable or these methods because their small sizes limit them to their domestic countries.
+        <br>
+        <br>
+        The MajorRecordLabel and IndependentRecordLabel subclasses are shown below for reference:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    public class MajorRecordLabel extends RecordLabel{
+                        private int numCountries;
+                        private int numSubsidiaries;
+                        private double subsidiaryRevenue;
+                        private double subsidiaryCost;
+                        private double subsidiaryProfit;
+                        private String topArtist;
+
+                        public MajorRecordLabel()
+                        {
+                            numCountries = 1;
+                            numSubsidiaries = 0;
+                            subsidiaryRevenue = 0.0;
+                            subsidiaryCost = 0.0;
+                            topArtist = "";
+                        }
+
+                        public MajorRecordLabel(String n, String ceo, String hq, int plat, double r, double c, int alb, int art, int nc,
+                        int ns, double sr, double sc, String ta) {
+                            super(n, ceo, hq, plat, r, c, alb, art);
+                            numCountries = nc;
+                            numSubsidiaries = ns;
+                            subsidiaryRevenue = sr;
+                            subsidiaryCost = sc;
+                            topArtist = ta;
+                            setRevenue(getRevenue() + subsidiaryRevenue);
+                            setCost(getCost() + subsidiaryCost);
+                        }
+
+                        public void addNumCountries(int n) {
+                            numCountries += n;
+                        }
+
+                        public void subNumCountries(int n) {
+                            numCountries -= n;
+                        }
+
+                        public void newSubsidiaries(int n) {
+                            numSubsidiaries += n;
+                        }
+
+                        public void loseSubsidiaries(int n) {
+                            numSubsidiaries -= n;
+                        }
+
+                        public void calcSubsidiaryProfit() {
+                            subsidiaryProfit = subsidiaryRevenue - subsidiaryCost;
+                        }
+
+                        public int getNumCountries() {
+                            return numCountries;
+                        }
+
+                        public void setNumCountries(int numCountries) {
+                            this.numCountries = numCountries;
+                        }
+
+                        public int getNumSubsidiaries() {
+                            return numSubsidiaries;
+                        }
+
+                        public void setNumSubsidiaries(int numSubsidiaries) {
+                            this.numSubsidiaries = numSubsidiaries;
+                        }
+
+                        public double getSubsidiaryRevenue() {
+                            return subsidiaryRevenue;
+                        }
+
+                        public void setSubsidiaryRevenue(double subsidiaryRevenue) {
+                            this.subsidiaryRevenue = subsidiaryRevenue;
+                        }
+
+                        public double getSubsidiaryCost() {
+                            return subsidiaryCost;
+                        }
+
+                        public void setSubsidiaryCost(double subsidiaryCost) {
+                            this.subsidiaryCost = subsidiaryCost;
+                        }
+
+                        public double getSubsidiaryProfit() {
+                            return subsidiaryProfit;
+                        }
+
+                        public String getTopArtist() {
+                            return topArtist;
+                        }
+
+                        public void setTopArtist(String topArtist) {
+                            this.topArtist = topArtist;
+                        }
+                    }
+
+
+                    public class IndependentRecordLabel extends RecordLabel{
+                        private String genre;
+                        private String financialStatus;
+                        private int numConnections;
+                        private int numCollabAlbums;
+
+                        public IndependentRecordLabel()
+                            {
+                                genre = "";
+                                financialStatus = "breaking even";
+                                numConnections = 0;
+                                numCollabAlbums = 0;
+                        }
+
+                        public IndependentRecordLabel(String n, String ceo, String hq, int plat, double r, double c, int alb, int art,
+                        String g, String fs, int nc, int nca) {
+                            super(n, ceo, hq, plat, r, c, alb, art);
+                            genre = g;
+                            financialStatus = fs;
+                            numConnections = nc;
+                            numCollabAlbums = nca;
+                        }
+
+                        public void newConnection()
+                        {
+                                numConnections++;
+                        }
+
+                        public void breakConnection()
+                        {
+                                numConnections--;
+                        }
+
+                        public void artistControversy(int numCon) {
+                            numConnections -= numCon;
+                        }
+
+                        public void releaseCollabAlbum()
+                        {
+                                numCollabAlbums++;
+                        }
+
+                        public String getGenre() {
+                            return genre;
+                        }
+
+                        public void setGenre(String genre) {
+                            this.genre = genre;
+                        }
+
+                        public String getFinancialStatus() {
+                            return financialStatus;
+                        }
+
+                        public void setFinancialStatus(String financialStatus) {
+                            this.financialStatus = financialStatus;
+                        }
+
+                        public int getNumConnections() {
+                            return numConnections;
+                        }
+
+                        public void setNumConnections(int numConnections) {
+                            this.numConnections = numConnections;
+                        }
+
+                        public int getNumCollabAlbums() {
+                            return numCollabAlbums;
+                        }
+
+                        public void setNumCollabAlbums(int numCollabAlbums) {
+                            this.numCollabAlbums = numCollabAlbums;
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        A common mistake when dealing with inheritance in Java is attempting to directly access inherited superclass private variables or methods from a subclass. Although the subclass inherits everything from the superclass, the subclass is technically a class outside of the superclass, therefore private variables and methods cannot be directly accessed. Similarly, another common mistake is attempting to access subclass variables or methods from a superclass, especially from a subclass object declared or cast as the superclass type. The best way to avoid program issues with inheritance is to always pay special attention to access levels, data types, casting, and method overrides (if applicable).
+    </font></p>
+</body>
+</html>

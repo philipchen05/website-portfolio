@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+</head>
+
+<style>
+.indented {
+    padding-left: 100pt;
+    padding-right: 100pt;
+}
+</style>
+
+<style>
+A {
+    text-decoration: none;
+}
+</style>
+
+<body bgcolor="#AD85FF" link="#000000" alink="#000000" vlink="#000000">
+    <center><h1><font face="Century Gothic" size=+4>Portfolio</font></h1></center>
+    <hr color="#7458AD">
+    <font face="Century Gothic"><a href="Portfolio.html"><img src="back.jpg" height="41" width="72" alt="Back"></a></font>
+    <center><h2><font face="Century Gothic" size=+3>Array</font></h2></center>
+    <p class="indented"><font face="Century Gothic">
+        <b>Tutorial</b>
+        <br>
+        An array is a data type in Java that stores multiple elements of the same data type in one single variable. Declaring an array is just like declaring any other variable; we declare the access level, followed by the data type (primitive or object reference), and finally followed by the name. The only difference is that we must insert square brackets ([]) after the data type to let Java know that we are declaring an array.
+        <br>
+        <br>
+        Since arrays store multiple elements, initializing an array is different from initializing a normal variable. There are two main ways to initialize an array: using the new keyword or using an initializer list. Before explaining how these methods of initialization work, it is important to note that the size of an array is immutable. Every array has a public final int variable called length that stores the size of the array (i.e. the number of elements). Being a final variable means that once an array is created and initialized, its length cannot be changed. However, we can change the values of its elements as long as we stay within the length of the array in our manipulations.
+        <br>
+        <br>
+        The first way to initialize an array is to use the new keyword, which is similar to how an object of a class is initialized. To initialize an array using this method, we assign the keyword new followed by the array type and length enclosed in square brackets ([int length]) to the array variable using the equal (=) sign. This will initialize the array to the given immutable length and initialize all the elements inside the array to default values (0 for int, 0.0 for double, false for boolean, null for object reference). This method of array initialization is particularly useful when we are unsure of the array's contents at the time of initialization.
+        <br>
+        <br>
+        If we already know the contents of the array at the time of initialization, we can use an initializer list instead of the new keyword. An initializer list is a brace-enclosed ({}) list of values separated by commas. Assigning an initializer list to an array variable will initialize the elements in the array to the predetermined values in the initializer list. The immutable length of the array is determined by the number of values in the initializer list.
+        <br>
+        <br>
+        To access an array, we simply use its variable name. To access specific elements within an array, we use indexes. An index is an integer that represents the numerical position of an element within an array. It is important to note that the first index in an array is 0, not 1. This means that the last index of an array is the length of the array minus one. When we want to specify a specific element in an array, we use the array's name followed by the index of the element we want to access enclosed in square brackets ([int index]).
+        <br>
+        <br>
+        In dealing with arrays, it is often necessary to have to access every element in an array. Accessing every element in an array is known as traversing an array. Traversing an array can be done in three main ways: using a for-loop, using a while-loop, and using an enhanced for-loop (also known as a foreach-loop).
+        <br>
+        <br>
+        To traverse an array using a for-loop, we set the initial value of the loop counter to 0 (because the first index we want to access is at index 0). We set the condition to be that the loop will continue to run until the loop counter is less than the length of the array (recall that the last index of an array is its length - 1 and not its length). We then increment the loop counter by one each time the loop runs. Finally, we use the loop counter as the index number of the element we want to access in the array in the for-loop body.
+        <br>
+        <br>
+        Traversing an array using a while-loop is very similar to a for-loop. First, we declare and initialize an int variable outside of the while-loop to 0. This variable will serve as the loop counter. We can then use this loop counter as the index of the element we want to access in the array in the loop body. After each element access in the loop body, we increment the loop counter by one to prepare for the access of the next element in the array. Just like with the for-loop, we set the condition of the while loop to run the loop as long as the loop counter is less than the length of the array.
+        <br>
+        <br>
+        The last method of traversing an array is using an enhanced for-loop. This method is perhaps the easiest of the three but can only be used for accessing the elements in an array and cannot be used for changing element values. This is because the enhanced for-loop creates a copy of each element in the array, which means that the element access is not the actual element in the array. To set up an enhanced for-loop, we declare the keyword for followed by parentheses just like in a regular for-loop. Inside the parentheses, we declare a variable of the data type of the elements we are accessing in the array. Next, we insert a colon (:) (not a semicolon) followed by the array name. What the loop will do is go through every element in the given array and assign the element value to the loop variable we declared. To access an element in the array, we use the loop variable name in the loop body, which holds an exact copy of the element we want to access. Note that indexes are not required for enhanced for-loops.
+    </font></p>
+    <br>
+    <p class="indented"><font face="Century Gothic">
+        <b>Example</b>
+        <br>
+        Below is an example of a class using arrays:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    import java.io.*;
+
+                    public class Countries
+                    {
+                        String[] countries;
+                        double[] hdi;
+                        int[] gdp;
+                        int[] gdpPerCapita;
+                        double[] pwr;
+                        BufferedReader input;
+
+                        public Countries()
+                        {
+                            countries = new String[10];
+                            hdi = new double[10];
+                            gdp = new int[10];
+                            gdpPerCapita = new int[10];
+                            pwr = new double[10];
+
+                            try
+                            {
+                                input = new BufferedReader(new FileReader("Countries.txt"));
+
+                                for(int i = 0; i < countries.length; i++)
+                                {
+                                    countries[i] = input.readLine();
+                                    hdi[i] = Double.parseDouble(input.readLine());
+                                    gdp[i] = Integer.parseInt(input.readLine());
+                                    gdpPerCapita[i] = Integer.parseInt(input.readLine());
+                                    pwr[i] = Double.parseDouble(input.readLine());
+                                }
+                            }
+                            catch(IOException e)
+                            {
+                            }
+                        }
+
+                        // more methods not shown
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        The Country class has 6 class variables, 5 of which are arrays. We can tell they are arrays because of the square brackets ([]) that follow the data types in the variable declarations. For example, we know that the countries variable is an array of strings because the String keyword tells us the data type stored in the array and the square brackets tell us that countries is an array of strings and not an individual string object. Inside the Countries class constructor, we can see that the array variables are initialized to lengths of 10 using the new keyword. Because the new keyword is used instead of an initializer list, we can infer that the contents of the arrays are unknown at the time the arrays are initialized.
+        <br>
+        <br>
+        Since the arrays have been initialized using the new keyword, the elements in the arrays are set to their default values, which means that the actual values of the elements must be manually assigned. In order to do this efficiently, we can implement an array traversal to traverse through every element in each array and assign the proper value to that element. Inside the try block in the constructor, there is a regular for-loop that is used for this array traversal. Because we are changing the values of the elements in the arrays when we assign new values to them, we cannot use an enhanced for-loop. As previously instructed, we initialize the loop counter variable to 0 and set the loop to run as long as the loop counter is less than the length of the array (countries.length). Finally, we increment the loop counter by one after each loop run. Inside the for-loop body, we use the loop counter variable as the index we want to access in each array variable and assign the correct values to all the elements in this way. At the end of the for-loop, all 5 arrays would have been simultaneously traversed and assigned the actual values we want them to store.
+        <br>
+        <br>
+        When assigning values to arrays after they have been initialized, the structure of how the assigning is done is very important because we want to be as efficient as possible with our code. We could have individually assigned a value to every element in every array on individual lines of code because the end result would be the same, but that would be way too inefficient. Instead, using a loop is a much simpler and effective solution to the problem. When implementing a loop, we have the option of using a for-loop, a while-loop, or an enhanced for-loop. However, since we are changing the elements in the arrays, we cannot use an enhanced for-loop as we would be changing copies of the elements of the arrays, not the actual elements themselves. Both regular for-loops and while-loops are valid for our purposes but a for-loop is easier to write and read in the case of an array traversal as a while-loop would require additional external lines of code. Therefore, the for-loop structure shown above in the example is the most efficient solution to the problem.
+        <br>
+        <br>
+        For this assignment, the task was to create a program using 1D parallel arrays (multiple arrays whose elements correspond to each other's elements of the same index) to record and rate different versions of an object of the student's choice. The class needed to have 3 to 5 parallel array variables, each for storing one type of information pertaining to the object. The values of the elements in these arrays would then be used in calculating ratings for the different versions of the object in the program.
+        <br>
+        <br>
+        The object I chose was a country. Every country has a name, a Human Development Index (HDI), a gross domestic product (GDP), a gross domestic product per capita (GDP per capita), and a power index (PWR). I created an array variable for each of these attributes of a country, taking into account the type of data that needed to be stored. For example, the country names are stored in a string array while the human development indexes are stored in an array of doubles. My approach to rating the countries was to determine which country was the best overall.
+        <br>
+        <br>
+        Below is the calculateBest method I used in the Countries class to determine the best country overall:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    public String calculateBest()
+                    {
+                        double greatestHdi = 0.0;
+                        int greatestHdiIndex = -1;
+                        int greatestGdp = 0;
+                        int greatestGdpIndex = -1;
+                        int greatestGpc = 0;
+                        int greatestGpcIndex = -1;
+                        double greatestPwr = 0.0;
+                        int greatestPwrIndex = -1;
+                        int count;
+                        int greatestCount = 0;
+                        int greatestCountIndex = 0;
+                        String data = "\nRank\tName\t\tHDI\t\tGDP($million)\tGDP/Capita\tPWR";
+
+                        for(int i = 0; i < countries.length; i++)
+                        {
+                            if(hdi[i] > greatestHdi)
+                            {
+                                greatestHdi = hdi[i];
+                                greatestHdiIndex = i;
+                            }
+                        }
+
+                        for(int i = 0; i < countries.length; i++)
+                        {
+                            if(gdp[i] > greatestGdp)
+                            {
+                                greatestGdp = gdp[i];
+                                greatestGdpIndex = i;
+                            }
+                        }
+
+                        for(int i = 0; i < countries.length; i++)
+                        {
+                            if(gdpPerCapita[i] > greatestGpc)
+                            {
+                                greatestGpc = gdpPerCapita[i];
+                                greatestGpcIndex = i;
+                            }
+                        }
+
+                        for(int i = 0; i < countries.length; i++)
+                        {
+                            if(pwr[i] > greatestPwr)
+                            {
+                                greatestPwr = pwr[i];
+                                greatestPwrIndex = i;
+                            }
+                        }
+
+                        for(int i = 0; i < countries.length; i++)
+                        {
+                            count = 0;
+                            if(greatestHdiIndex == i)
+                            {
+                                count++;
+                            }
+                            if(greatestGdpIndex == i)
+                            {
+                                count++;
+                            }
+                            if(greatestGpcIndex == i)
+                            {
+                                count++;
+                            }
+                            if(greatestPwrIndex == i)
+                            {
+                                count++;
+                            }
+                            if(count > greatestCount)
+                            {
+                                greatestCount = count;
+                                greatestCountIndex = i;
+                            }
+                        }
+
+                        data += "\n1\t" + countries[greatestCountIndex]+ "\t\t" + hdi[greatestCountIndex] + "\t\t$" + gdp[greatestCountIndex];
+                        if(gdp[greatestCountIndex] < 999999)
+                        {
+                            data += "\t\t$" + gdpPerCapita[greatestCountIndex];
+                        }
+                        else
+                        {
+                            data += "\t$" + gdpPerCapita[greatestCountIndex];
+                        }
+                        data += "\t\t" + pwr[greatestCountIndex];
+
+                        return data;
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        My first step to calculating the best country was to determine the best country in each individual category: HDI, GDP, GDP per capita, and PWR. For each of these categories, I created two local variables; one to store the greatest value in that category and one to store the index of the greatest value in the corresponding array. I used simple for-loop traversals to determine the values of these variables. Next, I created a for-loop to traverse the arrays and determine which country has the most first-place positions in the different categories, using the local int variable count to keep track of the number of first places of each country. Whichever country ranks first the most in all categories is the best country overall. Finally, the method returns all of the best country's data in a well-formatted string.
+        <br>
+        <br>
+        There are many common mistakes that arise when dealing with arrays. Firstly, it is important to remember that array indexes begin at 0 and end at the length - 1. This means that accessing the index at the length of an array will cause an ArrayIndexOutOfBoundsException to occur. When traversing arrays, off-by-one errors are very common. These are errors that occur when an incorrectly implemented loop condition statement causes the loop to run either one too many or one too few times. In order to correctly access every single element in an array, the loop counter must begin at 0 and on the value of the length - 1. This can be done in several ways, such as setting the loop to run for as long as the loop counter is less than the length of the array or setting the loop to run for as long as the loop counter is less than or equal to the length - 1. Another common mistake is using an enhanced for-loop to traverse and modify elements in an array. Enhanced for-loops work with copies of the elements in an array, so any modifications done in the enhanced for-loop will only change the copies of the elements, which are destroyed when the loop ends. Finally, indexes are not to be used in enhanced for-loops as array traversal is already managed by the loop.
+    </font></p>
+</body>
+</html>

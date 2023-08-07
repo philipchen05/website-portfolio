@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+</head>
+
+<style>
+.indented {
+    padding-left: 100pt;
+    padding-right: 100pt;
+}
+</style>
+
+<style>
+A {
+    text-decoration: none;
+}
+</style>
+
+<body bgcolor="#AD85FF" link="#000000" alink="#000000" vlink="#000000">
+    <center><h1><font face="Century Gothic" size=+4>Portfolio</font></h1></center>
+    <hr color="#7458AD">
+    <font face="Century Gothic"><a href="Portfolio.html"><img src="back.jpg" height="41" width="72" alt="Back"></a></font>
+    <center><h2><font face="Century Gothic" size=+3>Recursion</font></h2></center>
+    <p class="indented"><font face="Century Gothic">
+        <b>Tutorial</b>
+        <br>
+        Recursion in Java is defined as when a method calls upon itself. Such a method is known as a recursive method. A recursive method has two main parts: a base case and a recursive case. The base case is similar to the condition statement of a loop; it determines when the recursion ends. The recursive case is like the loop body; it runs until the base case ends the recursion. Due to these similarities, recursion is often compared to iterative loops. In most situations in Java, recursion and iteration can be used interchangeably, with both styles having their own pros and cons. Generally, recursion is much easier to program and read but takes up much more memory space than iteration. Iteration on the other hand is more complicated for the programmer to set up and harder for readers to follow but makes up for this with much more efficient memory allocation.
+        <br>
+        <br>
+        In a recursive method, the original problem can only be solved with the solution to a smaller problem. The smaller problem can only be solved with the solution to an even smaller problem. Eventually, these problems will become smaller and smaller to the point of the base case, which has a concrete, predetermined solution. Once this solution is found, the method can then work backwards and plug each solution into a larger problem until the original problem is solved.
+        <br>
+        <br>
+        As stated before, recursion works by taking a large problem and returning simplified versions of the problem until it reaches the base case. Once it reaches the base case, it works backwards to solve the problem, using the newly-discovered base case value. For example, a method to calculate powers of positive exponents can be written using recursion. Let us say we wanted to calculate the result of 2 ^ 5. 2 ^ 5 can also be written as 2 * 2 ^ 4. 2 ^ 4 can be written as 2 ^ 3, and so on. From the program's perspective, it sees the problem is 2 ^ 5 but it does not know the solution yet. However, it does know that 2 ^ 5 is equal to 2 * 2 ^ 4. Although it does not know the value of 2 ^ 4, it does know that 2 ^4 is equal to 2 * 2 ^ 3. Eventually, the program will reach 2 ^ 0, which equals 1; that is the base case in our recursive method.
+        <br>
+        <br>
+        Since we know that any number to the power of 0 is 1, we can set up the base case to return 1 when the exponent is 0. Let us call our method "power":
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    public int power(int base, int exponent)
+                    {
+                        if(exponent == 0)
+                        {
+                            return 1;
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        The return type of our method is int because we are returning integer powers. Inside the method parameters, there are two arguments: an integer for the base and an integer for the exponent. In the method body, we can see our base case; when the exponent is equal to 0, 1 is returned. Now we must set up the recursive case.
+        <br>
+        <br>
+        Recall that 2 ^ 5 is the same as 2 * 2 ^ 4, and so on. In our method, this would be written as base * power(base, exponent - 1). With each iteration of the method, we want to return the base of the exponent times the base to the power of the exponent - 1, just like in our numerical example with 2 ^ 5. This will be our recursive case:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    public int power(int base, int exponent)
+                    {
+                        if(exponent == 0)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return base * power(base, exponent - 1);
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        Our simple recursive method is now complete. Notice how the method continues to call on itself while decrementing the exponent by one until it reaches the base case where the exponent equals 0. Once the base case is reached, the value 1 is returned. Previously, the program did not know the value of 2 ^ 1 but it did know that 2 ^ 1 equals 2 * 2 ^ 0. Since 2 ^ 0 is 1, 2 ^ 1 equals 2. Since 2 ^ 2 equals 2 * 2 ^ 1, 2 ^ 2 equals 4. Since 2 ^ 3 equals 2 * 2 ^ 2, 2 ^ 3 equals 9, and so on until 32 (the answer to 2 ^ 5, the original problem) is returned.
+    </font></p>
+    <br>
+    <p class="indented"><font face="Century Gothic">
+        <b>Example</b>
+        <br>
+        Below is an example of a class using recursion:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    public class Recursion1
+                    {
+                        public int sum(int n)
+                        {
+                            int total = 0;
+                            for(int i = n; i > 0; i--)
+                            {
+                                total += i;
+                            }
+                            return total;
+                        }
+
+                        public int sumR(int n)
+                        {
+                            if(n == 1)
+                            {
+                                return 1;
+                            }
+                            return n + sumR(n - 1);
+                        }
+
+                        public int timeTable(int b, int e)
+                        {
+                            int power = 1;
+                            for(int i = 0; i < e; i++)
+                            {
+                                power *= b;
+                            }
+                            return power;
+                        }
+
+                        public int timeTableR(int b, int e)
+                        {
+                            if(e == 0)
+                            {
+                                return 1;
+                            }
+                            return b * timeTableR(b, e - 1);
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        Notice that the timeTableR method is the same as the power method we created above; it takes in a base and an exponent, calculates the answer through recursion, and returns the final value. The timeTable method performs the exact same function as the timeTableR method, except that it uses iteration instead of recursion. Similarly, we can see that the sum method implements iteration while the sumR method implements recursion. Although they are programmed differently, both the sum method and the sumR method do the same thing; they return the sum of the parameter n and all positive integers below it.
+        <br>
+        <br>
+        As mentioned before, the sumR method takes in an integer n and returns the sum of it and all positive integers below it (n + (n - 1) + (n - 2) + ... + 2 + 1). The recursive case returns n plus the sum of (n - 1) and all positive integers below it, which is a simplified version of the original problem. Once n equals 1, 1 is returned; this is the base case. As long as n is a positive integer, 1 will always be the last number added to the total. Once this value is reached, the method will work backwards to calculate the final answer by plugging in continuous newly-calculated sub-answers.
+        <br>
+        <br>
+        This Recursion1 class performs 2 main functions: calculating the sum of a positive integer and all positive integers below it and calculating the power of a positive exponent. Both functions have an iterative version and a recursive version. From the outside, there is no difference between the iterative and recursive versions as they both perform the same task in the end. However, as stated in the beginning, there are differences behind the scenes. The iterative method saves memory and is faster and more efficient at the cost of syntactical complexity. The recursive method is slower and uses up more memory but is easier for the programmer to set up and for others to read.
+        <br>
+        <br>
+        This class was created for the first part of a recursion assignment. The first instruction was to create an iterative method that when given an integer value, would return the sum of the integer value and all positive integers below it. After completing this method, the next instruction was to convert it to a recursive method that performs the same function. After that, the instruction was to create an iterative method that when given two integer values, a base and an exponent, would return the value of base to the power of exponent. Once again, the iterative method was to then be converted to a recursive method that performs the same function.
+        <br>
+        <br>
+        The iterative methods were relatively straightforward; I simply created a local integer variable to store the value I wanted to return and implemented a for-loop to continually add or multiply to it before returning the final answer. The recursive methods required a bit more thinking but they were relatively straightforward as well due to the simplicity of the task. For both recursive methods, I determined a base case where the result returned would always be the same no matter what. This meant returning 1 when n equalled 1 in the sumR method and returning 1 when e equalled 0 in the timeTableR method. I then broke the problem down into a smaller problem that could be recursively implemented to find the solution and returned the simplified problem in the recursive case.
+        <br>
+        <br>
+        Recursion can be a difficult concept for beginners to grasp. However, once the concept is well understood, there really is not much room for error; the process of implementing recursion becomes very straightforward. A potentially common mistake could be forgetting to create a base case, in which the recursive method would continue to call on itself over and over, resulting in an endless loop. In general, though, the greatest challenge with recursion is simply overcoming the obstacle of actually understanding it.
+    </font></p>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+</head>
+
+<style>
+.indented {
+    padding-left: 100pt;
+    padding-right: 100pt;
+}
+</style>
+
+<style>
+A {
+    text-decoration: none;
+}
+</style>
+
+<body bgcolor="#AD85FF" link="#000000" alink="#000000" vlink="#000000">
+    <center><h1><font face="Century Gothic" size=+4>Portfolio</font></h1></center>
+    <hr color="#7458AD">
+    <font face="Century Gothic"><a href="Portfolio.html"><img src="back.jpg" height="41" width="72" alt="Back"></a></font>
+    <center><h2><font face="Century Gothic" size=+3>Writing Classes</font></h2></center>
+    <p class="indented"><font face="Century Gothic">
+        <b>Tutorial</b>
+        <br>
+        Java is an object-oriented programming language, meaning objects are the fundamental concepts of Java. In order to create an object, we must first create a class. A class is like a blueprint for an object; once we create the blueprint, we can use the blueprint to create as many objects as we want.
+        <br>
+        <br>
+        Every class has a name, attributes, and behaviours. The name of the class should be descriptive of what the class represents. The first letter of the name should be capitalized, just as if it were a proper noun in English. Attributes, more commonly known as variables, are features of a class. A class is often described as having a has-a relationship with its variables. For example, we could create a Car class with a wheel attribute; a car has-a wheel. Every variable has an access level, type, name, and value that does not have to be assigned in the variable declaration. The access level of the variable is written first in the variable declaration and determines which classes have access to it. A variable with a  public access level can be accessed by any class while a variable with a private access level can only be accessed by the class it is in. Generally, class variables should be declared private. The variable type determines the type of data stored in the variable. This could be an integer (int), text (String), decimal (double), etc. Variable names are to be composed of only alphanumeric characters, with the exception of underscores. Names should begin with a lowercase letter and be written in camel case (unless the variable is final, in which case the entire variable name should be written in uppercase). The value of a variable is assigned using the equal (=) sign.
+        <br>
+        <br>
+        Behaviours are things the object can do. For example, some of the behaviours of a plane object are taking off, flying, landing, opening/closing doors, filling the gas tank, etc. In Java, behaviours are known as methods. A method declaration consists of an access level, a return type, a name, and parameters. The access level of a method works the same way as it does for a variable. The return type of a method determines the type of value returned by the method. If the method does not return anything, the return type is void. The method name should describe what the method does and the naming conventions are the same as for naming variables. Finally, the method's parameters are values that can be passed to it for use inside the method body. A method does not need to have parameters; the parameters can be left blank. There are two common types of methods that appear in almost every class: accessor methods and mutator methods. An accessor method is a method that returns the value of a class variable while a mutator method is an often void method that changes the value of a class variable to a value passed to it through its parameters. The purpose of both of these types of methods is to allow external classes to access private class variables.
+        <br>
+        <br>
+        Classes also have constructors, which are vital for creating objects of a class. A constructor is a special method that instantiates the class into a physical object in the computer's memory. Constructors are also usually used to initialize class variables and do not have a return type. Classes can also have multiple overloaded constructors. In general, it is good practice to always create a default no-argument (no-parameter) constructor for every class that initializes class variables to default values.
+        <br>
+        <br>
+        The static keyword is another optional feature of a class and is used for variable and method declarations. A static variable or method simply means that that variable or method can be accessed without creating an object of the class. In other words, the static variable or method is part of the class blueprint and not part of the object created from the blueprint.
+    </font></p>
+    <br>
+    <p class="indented"><font face="Century Gothic">
+        <b>Example</b>
+        <br>
+        Below is an example of an Animal class in Java:
+    </font></p>
+    <pre><font face="Courier New"><b>
+                    public class Animal
+                    {
+                        private String name;
+                        private boolean tired;
+                        private boolean hungry;
+                        private double weight;
+
+                        public Animal(String n, double w)
+                        {
+                            name = n;
+                            tired = true;
+                            hungry = true;
+                            weight = w;
+                        }
+
+                        public void feed(String v)
+                        {
+                            hungry = false;
+                            if (v.equals("vegetables"))
+                                weight +=2;
+                            else if (v.equals("meat"))
+                                weight +=4;
+                            else
+                                weight +=1;
+                        }
+
+                        public void sleep()
+                        {
+                            tired = false;
+                            weight -=3;
+                        }
+
+                        public static void main(String[] args)
+                        {
+                            Animal a = new Animal("dog", 20);
+                            a.feed("dog food");
+                            a.sleep();
+                        }
+                    }
+    </b></font></pre>
+    <p class="indented"><font face="Century Gothic">
+        As we can see, this example code showcases many of the class features we talked about. The Animal class has four variables, all of which are declared at the top of the class. In the first variable, we can see that it has been declared private and is of type String. The name of the variable is "name," which tells us that this variable most likely stores the name of the animal. Below the class variables there is an Animal class constructor which takes in two values in its parameters and initializes the class variables based on these values using the equal (=) sign. The sleep method is an example of a method with no parameters and it has been declared public with return type void. We see a use of the static keyword in the main method at the end of the Animal class, which means that the main method runs without the need for instantiating an object of the Animal class.
+        <br>
+        <br>
+        This program is a very basic representation of what a Java class looks like. The structure is very simple, with variables, a constructor, and methods. The simplicity of the structure creates a program that is just as simple. There is little activity in the Animal class and none of the methods produce any actual output; everything is done behind the scenes.
+        <br>
+        <br>
+        This program was written for the first assignment of the course, which was an introductory assignment on Java classes. The purpose of the assignment was to familiarize students with the structure of a class and its features. The task was to write a simple, bare-bones Java class with variables, methods, and a constructor to illustrate our understanding of the concept of a class.
+        <br>
+        <br>
+        My approach to this assignment was creating a checklist of features in a Java class and implementing them into my program. The main features of a class are variables, methods, and a constructor. Since the class name is Animal, my methods and variables needed to be related to animals; the variables would represent attributes of an animal while the methods would represent the behaviours of an animal.
+        <br>
+        <br>
+        Since this assignment was introductory, there are not a lot of common mistakes in understanding and implementing the concept of Java classes. However, potential structural errors could include forgetting to declare class variables as private and forgetting to create a no-argument constructor (as I forgot in my example code).
+    </font></p>
+</body>
+</html>
